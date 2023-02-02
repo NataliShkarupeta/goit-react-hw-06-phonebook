@@ -3,10 +3,14 @@ import { Input } from './inputName.styled';
 import { Label } from './inputName.styled';
 import PropTypes from 'prop-types';
 import { Button } from 'components/Button/Button';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { addContact } from 'redux/contactSlice';
+import { nanoid } from 'nanoid';
 
-export const InputName = ({  send }) => {
-    const contact = useSelector(state => state.contacts.contacts);
+export const InputName = () => {
+  const dispatch = useDispatch();
+  const contact = useSelector(state => state.contacts.contacts);
+
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -24,9 +28,14 @@ export const InputName = ({  send }) => {
     if (match) {
       alert(`${name} already in contacts!!!`);
     } else {
-      send({name,number});
-     setName('')
-     setNumber('')
+      const cont = {
+        name,
+        number,
+        id: nanoid(),
+      };
+      dispatch(addContact(cont));
+      setName('');
+      setNumber('');
     }
   };
   return (
@@ -70,6 +79,4 @@ export const InputName = ({  send }) => {
 
 InputName.propTypes = {
   contact: PropTypes.arrayOf(PropTypes.shape),
-  send: PropTypes.func.isRequired,
 };
-

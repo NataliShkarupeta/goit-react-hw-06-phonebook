@@ -5,7 +5,11 @@ const filterSlice = createSlice({
   initialState: {
     filter: '',
   },
-  reducers: {},
+  reducers: {
+    cangeArreyByFind(state,action){
+       state.filter = action.payload
+    } 
+  },
 });
-
+export const {cangeArreyByFind} = filterSlice.actions;
 export default filterSlice.reducer;

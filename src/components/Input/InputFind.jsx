@@ -1,24 +1,30 @@
 import { Input } from './inputName.styled';
 import { Label } from './inputName.styled';
 import { Wrap } from 'components/DefaultStylse.styled';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { cangeArreyByFind } from 'redux/filterNameSlice';
 
+export const InputFind = () => {
+  const filter = useSelector(state => state.filter.filter);
+  const dispatch = useDispatch();
 
-export const InputFind = ({ find}) => {
-  const filter = useSelector(state => state.contacts.filter);
+  const handelChange = ({ target: { value } }) => {
+    dispatch(cangeArreyByFind(value));
+  };
+
   return (
     <Wrap>
       <Label>
         Find contact by name
-        <Input type="text" name="filter" value={filter} onChange={find} />
+        <Input
+          type="text"
+          name="filter"
+          value={filter}
+          onChange={handelChange}
+        />
       </Label>
     </Wrap>
   );
 };
 
-
-InputFind.propTypes = {
-  find: PropTypes.func.isRequired,
-  filter: PropTypes.string.isRequired,
-};
