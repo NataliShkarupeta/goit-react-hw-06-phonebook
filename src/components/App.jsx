@@ -8,10 +8,7 @@ import { Contacts } from './Contacts/Contacts';
 
 export const App = () => {
   const filter = useSelector(state => state.filter.filter);
-  let contact = useSelector(state => state.contacts.contacts);
-  // const [contacts, setContacts] = useState(
-  //   JSON.parse(localStorage.getItem('Contacts')) || []
-  // );
+  const contact = useSelector(state => state.contacts.contacts);
 
 
   const cangeArreyContacts = () => {
@@ -23,10 +20,6 @@ export const App = () => {
       return contact;
     }
   };
-
-  // useEffect(() => {
-  //   localStorage.setItem('Contacts', JSON.stringify(contacts));
-  // }, [contacts]);
 
   return (
     <>

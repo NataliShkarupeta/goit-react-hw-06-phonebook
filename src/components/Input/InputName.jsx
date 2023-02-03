@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Input } from './inputName.styled';
 import { Label } from './inputName.styled';
-import PropTypes from 'prop-types';
 import { Button } from 'components/Button/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact } from 'redux/contactSlice';
@@ -75,8 +74,4 @@ export const InputName = () => {
       )}
     </>
   );
-};
-
-InputName.propTypes = {
-  contact: PropTypes.arrayOf(PropTypes.shape),
 };
